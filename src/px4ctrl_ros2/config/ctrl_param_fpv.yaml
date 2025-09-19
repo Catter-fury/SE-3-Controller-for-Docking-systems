@@ -1,0 +1,61 @@
+#########################################################################
+# ⭐⭐⭐  Simplified PX4 Control Parameters (Simplified Version) ⭐⭐⭐ #
+#########################################################################
+
+px4ctrl_fsm:
+  ros__parameters:
+    # 基础参数
+    ctrl_freq_max: 200.0
+    max_manual_vel: 1.0
+
+    # RC反向参数
+    "rc_reverse.roll": false
+    "rc_reverse.pitch": false
+    "rc_reverse.yaw": false
+    "rc_reverse.throttle": false
+
+    # 推力映射参数
+    "thr_map.hover_percentage": 0.8
+
+    # SE3控制器参数 - 位置控制增益 (参考稳定控制器，降低增益避免震荡)
+    "se3.Kp_x": 4.0
+    "se3.Kp_y": 4.0
+    "se3.Kp_z": 6.0
+    "se3.Kv_x": 8.0
+    "se3.Kv_y": 8.0
+    "se3.Kv_z": 7.8
+    "se3.Kvi_x": 0.02
+    "se3.Kvi_y": 0.02
+    "se3.Kvi_z": 0.1
+    
+    # SE3控制器参数 - 姿态控制增益 (参考成功项目调整)
+    "se3.Kr_x": 1.2
+    "se3.Kr_y": 1.2
+    "se3.Kr_z": 1.2   # 提高偏航姿态增益，参考成功项目
+    "se3.Kw_x": 0.46
+    "se3.Kw_y": 0.46
+    "se3.Kw_z": 0.46  # 提高偏航角速度增益，参考成功项目
+    "se3.Kri_x": 0.05
+    "se3.Kri_y": 0.0
+    "se3.Kri_z": 0.02
+    
+    # SE3控制器参数 - 物理参数
+    "se3.mass": 2.0
+    "se3.gravity": 9.81
+    "se3.Ixx": 0.03232
+    "se3.Iyy": 0.03232
+    "se3.Izz": 0.04238
+    
+    # SE3控制器参数 - 控制限制
+    "se3.max_thrust": -0.2  # 最大推力 (向上)
+    "se3.min_thrust": -0.9  # 最小推力 (向下)
+    "se3.max_torque": 0.6
+    
+    # SE3控制器参数 - 积分控制 (暂时关闭，先稳定基础控制)
+    "se3.use_integral": false
+
+    #Kalman滤波参数
+    "kf.Q_pos": 0.01  #位置过程噪声
+    "kf.Q_vel": 0.01  #速度过程噪声
+    "kf.R_pos": 0.1  #位置测量噪声
+    
